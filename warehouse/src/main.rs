@@ -2,7 +2,7 @@ mod inventory;
 mod orders;
 
 use crate::inventory::{FLOOR_SPACE, talk_to_manager};
-use inventory::products::{self, ProductCategory};
+use inventory::products::{Item, ProductCategory};
 
 fn main() {
     println!(
@@ -13,16 +13,10 @@ fn main() {
         FLOOR_SPACE
     );
 
-    talk_to_manager();
-
     let favorite_category = ProductCategory::Hammer;
     println!("My favorite category of item is {favorite_category:?}");
 
-    let tail_lader = products::Item {
-        name: String::from("Ladder-o-matic 2000"),
-        category: favorite_category,
-        quantity: 100,
-    };
+    let tail_lader = Item::new(String::from("Ladder-o-matic 2000"), favorite_category, 100);
 
     println!("{:#?}", tail_lader);
 }

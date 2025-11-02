@@ -5,20 +5,24 @@ mod orders;
 //     pub const MANAGER: &str = "Oliver Orderson";
 // }
 
+use crate::inventory::{FLOOR_SPACE, MANAGER, talk_to_manager};
+use inventory::products::{Item, ProductCategory};
+
 fn main() {
     println!(
         "Our managers are {} and {}. We have {} square feet of floor space",
-        inventory::MANAGER,
+        // crate::inventory::MANAGER,
+        MANAGER,
         orders::MANAGER,
-        inventory::FLOOR_SPACE
+        FLOOR_SPACE
     );
 
-    inventory::talk_to_manager();
+    talk_to_manager();
 
-    let favorite_category = inventory::ProductCategory::Hammer;
+    let favorite_category = ProductCategory::Hammer;
     println!("My favorite category of item is {favorite_category:?}");
 
-    let tail_lader = inventory::Item {
+    let tail_lader = Item {
         name: String::from("Ladder-o-matic 2000"),
         category: favorite_category,
         quantity: 100,

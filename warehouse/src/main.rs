@@ -1,12 +1,8 @@
 mod inventory;
 mod orders;
-// old module
-// mod orders {
-//     pub const MANAGER: &str = "Oliver Orderson";
-// }
 
 use crate::inventory::{FLOOR_SPACE, talk_to_manager};
-use inventory::products::{Item, ProductCategory};
+use inventory::products::{self, ProductCategory};
 
 fn main() {
     println!(
@@ -22,7 +18,7 @@ fn main() {
     let favorite_category = ProductCategory::Hammer;
     println!("My favorite category of item is {favorite_category:?}");
 
-    let tail_lader = Item {
+    let tail_lader = products::Item {
         name: String::from("Ladder-o-matic 2000"),
         category: favorite_category,
         quantity: 100,

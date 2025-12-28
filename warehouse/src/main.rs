@@ -1,8 +1,9 @@
 mod inventory;
 mod orders;
 
-use crate::inventory::{FLOOR_SPACE, MANAGER as INVENTORY_MANAGER};
-use inventory::products::{Item, ProductCategory};
+use inventory::{FLOOR_SPACE, Item, MANAGER as INVENTORY_MANAGER, ProductCategory};
+//similar
+//use crate::inventory::{FLOOR_SPACE, Item, MANAGER as INVENTORY_MANAGER, ProductCategory};
 use orders::MANAGER as ORDERS_MANAGER;
 fn main() {
     println!(

@@ -1,6 +1,8 @@
 mod inventory;
 mod orders;
 
+use fake::{Fake, Faker};
+
 use inventory::{FLOOR_SPACE, Item, MANAGER as INVENTORY_MANAGER, ProductCategory};
 //similar
 //use crate::inventory::{FLOOR_SPACE, Item, MANAGER as INVENTORY_MANAGER, ProductCategory};
@@ -17,4 +19,8 @@ fn main() {
     let tail_lader = Item::new(String::from("Ladder-o-matic 2000"), favorite_category, 100);
 
     println!("{:#?}", tail_lader);
+
+    let random_category: ProductCategory = Faker.fake();
+
+    println!("{:#?}", random_category);
 }

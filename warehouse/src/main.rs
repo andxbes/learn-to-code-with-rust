@@ -2,6 +2,7 @@ use fake::{Fake, Faker};
 //use warehouse::{FLOOR_SPACE, INVENTORY_MANAGER, Item, ORDERS_MANAGER, ProductCategory};
 use warehouse::*;
 
+/// Primary entrypoint intro our  warehouse program
 fn main() {
     println!("This is our primary program");
 

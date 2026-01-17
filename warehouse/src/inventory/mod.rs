@@ -1,6 +1,8 @@
 pub mod products;
 pub use products::{Item, ProductCategory};
 pub const FLOOR_SPACE: i32 = 1000;
+
+/// Our jolly manager
 pub const MANAGER: &str = "Ivan Inventory";
 
 pub fn talk_to_manager() {

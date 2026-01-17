@@ -3,6 +3,8 @@ use fake::{Fake, Faker};
 use warehouse::*;
 
 fn main() {
+    println!("This is our primary program");
+
     println!(
         "Our managers are {} and {}. We have {} square feet of floor space",
         INVENTORY_MANAGER, ORDERS_MANAGER, FLOOR_SPACE

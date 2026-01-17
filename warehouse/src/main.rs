@@ -1,12 +1,7 @@
-mod inventory;
-mod orders;
-
 use fake::{Fake, Faker};
+//use warehouse::{FLOOR_SPACE, INVENTORY_MANAGER, Item, ORDERS_MANAGER, ProductCategory};
+use warehouse::*;
 
-use inventory::{FLOOR_SPACE, Item, MANAGER as INVENTORY_MANAGER, ProductCategory};
-//similar
-//use crate::inventory::{FLOOR_SPACE, Item, MANAGER as INVENTORY_MANAGER, ProductCategory};
-use orders::MANAGER as ORDERS_MANAGER;
 fn main() {
     println!(
         "Our managers are {} and {}. We have {} square feet of floor space",

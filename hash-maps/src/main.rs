@@ -1,1 +1,27 @@
-fn main() {}
+use std::{collections::HashMap, vec};
+
+fn main() {
+    let mut sauces_to_meals = HashMap::from([
+        ("Ketchup", vec!["French Fries", "Burgers", "Hot Dogs"]),
+        ("Mayonnaise", vec!["Sandwiches", "Burgers", "Coleslaw"]),
+    ]);
+
+    sauces_to_meals.insert("Mustard", vec!["Hot dog", "Burgers", "Pretzels"]);
+
+    println!("{:?}", sauces_to_meals);
+    println!("remove {:?}", sauces_to_meals.remove("Mayonnaise").unwrap());
+    println!("{:?}", sauces_to_meals);
+
+    let mustard_meals = sauces_to_meals.get("Mustard");
+
+    match mustard_meals {
+        Some(meals) => println!("The meals are {meals:?}"),
+        None => println!("There were no meals for that sauce! Oh no"),
+    };
+
+    sauces_to_meals
+        .entry("Soy Sauce")
+        .or_insert(vec!["Sushi", "Dumplings"]);
+
+    println!("{:?}", sauces_to_meals);
+}

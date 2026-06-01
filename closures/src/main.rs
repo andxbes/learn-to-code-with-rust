@@ -56,7 +56,9 @@ fn main() {
     let mut total_price = 0.0;
     shopping_cart.checkout(|mut cart| {
         println!("{cart:?}");
-        cart.traverse_items(|item| total_price += item.price);
+        cart.traverse_items(|item| {
+            total_price += item.price;
+        });
     });
 
     println!("${total_price:?}");

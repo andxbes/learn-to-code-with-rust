@@ -12,6 +12,7 @@ fn main() {
         let cities_ref = &cities;
         select_first_two_elements(cities_ref)
     };
+    // drop(cities);
     println!("{two_cities:?}");
 
     {

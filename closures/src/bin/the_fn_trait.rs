@@ -13,4 +13,6 @@ fn main() {
         bosses.push("Alexandra");
     };
     execute_thrice(closure);
+
+    println!("{:?}", bosses);
 }

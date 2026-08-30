@@ -1,5 +1,5 @@
 // lib.rs
-#[derive(Debug)]
+#[derive(PartialEq, Debug)]
 struct Museum {
     paintings: Vec<String>,
     revenue: u32,

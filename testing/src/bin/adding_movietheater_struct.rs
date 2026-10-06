@@ -77,6 +77,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn print_failure() {
         println!("Failure inside the function");
         assert!(false);

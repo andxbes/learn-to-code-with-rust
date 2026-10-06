@@ -47,6 +47,7 @@ mod tests {
         museum.sell_ticket();
         museum.sell_ticket();
         assert_eq!(museum.revenue, 50);
+        assert_ne!(museum.revenue, 0);
     }
 
     #[test]

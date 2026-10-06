@@ -40,6 +40,8 @@ should determine if the salad includes any vegetable more
 than once. Return a Boolean.
 */
 
+use std::collections::HashSet;
+
 trait Caloric {
     fn calories(&self) -> u32;
 }
@@ -94,5 +96,114 @@ impl Caloric for Dressing {
             Self::Vinaigrette => 120,
             Self::Italian => 130,
         }
+    }
+}
+
+#[derive(Debug)]
+struct Salad {
+    protein: Protein,
+    vegetables: Vec<Vegetable>,
+    dressing: Dressing,
+}
+
+impl Salad {
+    fn new(protein: Protein, vegetables: Vec<Vegetable>, dressing: Dressing) -> Self {
+        Self {
+            protein,
+            vegetables,
+            dressing,
+        }
+    }
+
+    fn is_valid(&self) -> bool {
+        self.vegetables.len() > 0
+    }
+
+    fn calories(&self) -> u32 {
+        self.protein.calories()
+            + self.dressing.calories()
+            + self
+                .vegetables
+                .iter()
+                .map(|vegetable| vegetable.calories())
+                .sum::<u32>()
+    }
+
+    fn has_duplicate_vegetables(&self) -> bool {
+        self.vegetables
+            .clone()
+            .into_iter()
+            .fold(
+                HashSet::<Vegetable>::new(),
+                |mut data, vegetable: Vegetable| {
+                    data.insert(vegetable);
+                    data
+                },
+            )
+            .len()
+            < self.vegetables.len()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use pretty_assertions::assert_eq;
+    use rstest::{fixture, rstest};
+
+    #[fixture]
+    fn crispy_chicken_salad_with_there_vegetables_and_ranch_dressing() -> Salad {
+        Salad::new(
+            Protein::CrispyChicken,
+            vec![
+                Vegetable::SweetPotato,
+                Vegetable::Cucumber,
+                Vegetable::Tomato,
+            ],
+            Dressing::Ranch,
+        )
+    }
+
+    #[rstest]
+    fn salad_contains_protein_vegetables_and_dressing() {
+        let salad = Salad::new(
+            Protein::Steak,
+            vec![Vegetable::SweetPotato, Vegetable::Tomato],
+            Dressing::Italian,
+        );
+
+        assert_eq!(salad.protein, Protein::Steak);
+        assert_eq!(salad.dressing, Dressing::Italian);
+        assert_eq!(
+            salad.vegetables,
+            vec![Vegetable::SweetPotato, Vegetable::Tomato]
+        );
+    }
+
+    #[rstest]
+    fn salad_should_have_at_least_one_vegetable() {
+        assert_eq!(
+            crispy_chicken_salad_with_there_vegetables_and_ranch_dressing().is_valid(),
+            true
+        );
+    }
+
+    #[rstest]
+    fn salad_calculates_total_calories_from_ingredients() {
+        assert_eq!(
+            crispy_chicken_salad_with_there_vegetables_and_ranch_dressing().calories(),
+            685
+        );
+    }
+
+    #[rstest]
+    fn salad_can_identify_that_it_has_duplicate_vegetables() {
+        let salad = Salad::new(
+            Protein::Steak,
+            vec![Vegetable::Cucumber, Vegetable::Cucumber],
+            Dressing::Italian,
+        );
+
+        assert_eq!(salad.has_duplicate_vegetables(), true);
     }
 }
